@@ -6,7 +6,7 @@ import ev.aykhan.covid.model.entity.Statistics
 import ev.aykhan.covid.utils.genericRecycler.DataBindingRecyclerAdapter
 
 class StatisticsAdapter(
-    clickListener: (item: Statistics, position: Int) -> Unit
+    clickListener: ((item: Statistics, position: Int) -> Unit)? = null
 ) : DataBindingRecyclerAdapter<Statistics>(DiffCallback(), clickListener) {
 
     class DiffCallback : DiffUtil.ItemCallback<Statistics>() {

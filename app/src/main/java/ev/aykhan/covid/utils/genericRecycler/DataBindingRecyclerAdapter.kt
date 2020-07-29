@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 
 open class DataBindingRecyclerAdapter<T>(
     diffCallback: DiffUtil.ItemCallback<T>,
-    private val clickListener: (item: T, position: Int) -> Unit
+    private val clickListener: ((item: T, position: Int) -> Unit)? = null
 ) : ListAdapter<T, DataBindingViewHolder<T>>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<T> {

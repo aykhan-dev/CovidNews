@@ -3,6 +3,7 @@ package ev.aykhan.covid.utils
 import ev.aykhan.covid.model.entity.Country
 import ev.aykhan.covid.model.entity.News
 import ev.aykhan.covid.model.entity.Statistics
+import ev.aykhan.covid.model.parcelable.NewsParcelable
 import ev.aykhan.covid.model.pojo.CountryPOJO
 import ev.aykhan.covid.model.pojo.NewsPOJO
 import ev.aykhan.covid.model.pojo.StatisticsPOJO
@@ -38,4 +39,8 @@ fun List<CountryPOJO>.toCountryList(): List<Country> = map {
         newDeaths = it.newDeaths,
         newCases = it.newCases
     )
+}
+
+fun News.toParcelable(): NewsParcelable {
+    return NewsParcelable(id, title, body, datetime)
 }

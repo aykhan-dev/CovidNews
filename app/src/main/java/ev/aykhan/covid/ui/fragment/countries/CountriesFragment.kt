@@ -17,7 +17,7 @@ class CountriesFragment : Fragment() {
     private lateinit var binding: FragmentCountriesBinding
 
     private val viewModel: CountriesViewModel by viewModels()
-    private val adapter = CountriesAdapter { _, _ -> }
+    private val adapter = CountriesAdapter(null)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +29,7 @@ class CountriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindUI()
         configureRecyclerView()
     }
 
@@ -40,6 +41,10 @@ class CountriesFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         viewModel.fetchListOfCountries()
+    }
+
+    private fun bindUI(): Unit = with(binding) {
+        lifecycleOwner = this@CountriesFragment
     }
 
     private fun configureRecyclerView(): Unit = with(binding) {

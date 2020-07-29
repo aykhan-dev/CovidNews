@@ -11,9 +11,10 @@ class DataBindingViewHolder<T>(
     fun bind(
         item: T,
         position: Int,
-        clickListener: (item: T, position: Int) -> Unit
+        clickListener: ((item: T, position: Int) -> Unit)?
     ): Unit = with(binding) {
         setVariable(BR.data, item)
+        clickListener?.let { root.setOnClickListener { clickListener(item, position) } }
         executePendingBindings()
     }
 

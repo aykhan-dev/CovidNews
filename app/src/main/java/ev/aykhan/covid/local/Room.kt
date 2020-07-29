@@ -13,7 +13,7 @@ abstract class CountriesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertAll(items: List<Country>)
 
-    @Query("select * from countries")
+    @Query("select * from countries order by country asc")
     abstract fun getAll(): Flow<List<Country>>
 
     @Query("delete from countries")

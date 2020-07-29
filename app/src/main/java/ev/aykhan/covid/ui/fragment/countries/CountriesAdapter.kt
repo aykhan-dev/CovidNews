@@ -6,7 +6,7 @@ import ev.aykhan.covid.model.entity.Country
 import ev.aykhan.covid.utils.genericRecycler.DataBindingRecyclerAdapter
 
 class CountriesAdapter(
-    clickListener: (item: Country, position: Int) -> Unit
+    clickListener: ((item: Country, position: Int) -> Unit)? = null
 ) : DataBindingRecyclerAdapter<Country>(DiffCallback(), clickListener) {
 
     class DiffCallback : DiffUtil.ItemCallback<Country>() {

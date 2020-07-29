@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import ev.aykhan.covid.databinding.FragmentNewsBinding
+import ev.aykhan.covid.utils.toParcelable
 import ev.aykhan.covid.viewModel.fragment.news.NewsViewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -18,7 +19,12 @@ class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
 
     private val viewModel: NewsViewModel by viewModels()
-    private val adapter = NewsAdapter { _, _ -> }
+    private val navController by lazy { findNavController() }
+
+    private val adapter = NewsAdapter { item, _ ->
+        val data = item.toParcelable()
+        navController.navigate(NewsFragmentDirections.actionNewsFragmentToDetailedNewsFragment(data))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +36,7 @@ class NewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindUI()
         configureRecyclerView()
     }
 
@@ -41,6 +48,10 @@ class NewsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         viewModel.fetchNewsList()
+    }
+
+    private fun bindUI(): Unit = with(binding) {
+        lifecycleOwner = this@NewsFragment
     }
 
     private fun configureRecyclerView(): Unit = with(binding) {
