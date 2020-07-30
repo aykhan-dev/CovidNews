@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="countries">Ölkələr</string>
+    <string name="statistics">Statistikalar</string>
+    <string name="news">Xəbərlər</string>
+    <string name="settings">Tənzimləmələr</string>
+    <string name="detailed_info">Ətraflı info</string>
+    <string name="global_statistics">Qlobal statistika</string>
+
+    <string-array name="statisticsTitles">
+        <item>Aktiv xəstələr</item>
+        <item>Kritik xəstələr</item>
+        <item>Yeni xəstələr</item>
+        <item>Yeni ölümlər</item>
+        <item>Hər million</item>
+        <item>Ümumi xəstələr</item>
+        <item>Ümumi ölümlər</item>
+        <item>Ümumi sağalanlar</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="countries">Cтраны</string>
+    <string name="statistics">Cтатистика</string>
+    <string name="news">Новости</string>
+    <string name="settings">Hастройки</string>
+    <string name="detailed_info">Подробная Инфо</string>
+    <string name="global_statistics">Глобальная Статистика</string>
+
+    <string-array name="statisticsTitles">
+        <item>Активные Случаи </item>
+        <item>Критические Случаи</item>
+        <item>Новые Случаи</item>
+        <item>Новые Смерти</item>
+        <item>За Миллион</item>
+        <item>Всего Случаев</item>
+        <item>Всего Смертей</item>
+        <item>Всего Восстановлено</item>
+    </string-array>
+
+</resources>

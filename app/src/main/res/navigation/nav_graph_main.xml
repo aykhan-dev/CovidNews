@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="ev.aykhan.covid.ui.fragment.statistics.StatisticsFragment"
-        android:label="@string/statistics"
+        android:label="@string/global_statistics"
         tools:layout="@layout/fragment_statistics" />
     <fragment
         android:id="@+id/newsFragment"
@@ -24,11 +24,6 @@
         android:name="ev.aykhan.covid.ui.fragment.countries.CountriesFragment"
         android:label="@string/countries"
         tools:layout="@layout/fragment_countries" />
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="ev.aykhan.covid.ui.fragment.settings.SettingsFragment"
-        android:label="@string/settings"
-        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/detailedNewsFragment"
         android:name="ev.aykhan.covid.ui.fragment.detailedNews.DetailedNewsFragment"

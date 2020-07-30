@@ -1,23 +1,23 @@
 package ev.aykhan.covid.utils
 
 import ev.aykhan.covid.model.entity.Country
+import ev.aykhan.covid.model.entity.GlobalStatistics
 import ev.aykhan.covid.model.entity.News
-import ev.aykhan.covid.model.entity.Statistics
 import ev.aykhan.covid.model.parcelable.NewsParcelable
 import ev.aykhan.covid.model.pojo.CountryPOJO
+import ev.aykhan.covid.model.pojo.GlobalStatisticsPOJO
 import ev.aykhan.covid.model.pojo.NewsPOJO
-import ev.aykhan.covid.model.pojo.StatisticsPOJO
 
-fun StatisticsPOJO.toStatisticsList(): List<Statistics> {
+fun GlobalStatisticsPOJO.toStatisticsList(titles: Array<String>): List<GlobalStatistics> {
     return listOf(
-        Statistics("Active Cases", activeCases),
-        Statistics("Critical Cases", criticalCases),
-        Statistics("New Cases", newCases),
-        Statistics("New Deaths", newDeaths),
-        Statistics("Per Mln", perMln),
-        Statistics("Total Cases", totalCases),
-        Statistics("Total Deaths", totalDeaths),
-        Statistics("Total Recovered", totalRecovered)
+        GlobalStatistics(titles[0], activeCases),
+        GlobalStatistics(titles[1], criticalCases),
+        GlobalStatistics(titles[2], newCases),
+        GlobalStatistics(titles[3], newDeaths),
+        GlobalStatistics(titles[4], perMln),
+        GlobalStatistics(titles[5], totalCases),
+        GlobalStatistics(titles[6], totalDeaths),
+        GlobalStatistics(titles[7], totalRecovered)
     )
 }
 

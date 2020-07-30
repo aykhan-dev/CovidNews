@@ -3,8 +3,9 @@ package ev.aykhan.covid.local
 import android.content.Context
 import androidx.room.*
 import ev.aykhan.covid.model.entity.Country
+import ev.aykhan.covid.model.entity.GlobalStatistics
+import ev.aykhan.covid.model.entity.LocalStatistics
 import ev.aykhan.covid.model.entity.News
-import ev.aykhan.covid.model.entity.Statistics
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -51,18 +52,33 @@ abstract class NewsDao {
 abstract class StatisticsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract suspend fun insertAll(items: List<Statistics>)
+    abstract suspend fun insertAllGlobalStatistics(items: List<GlobalStatistics>)
 
-    @Query("select * from statistics")
-    abstract fun getAll(): Flow<List<Statistics>>
+    @Query("select * from globalStatistics")
+    abstract fun getAllGlobalStatistics(): Flow<List<GlobalStatistics>>
 
-    @Query("delete from statistics")
-    abstract fun deleteAll()
+    @Query("delete from globalStatistics")
+    abstract fun deleteAllGlobalStatistics()
 
     @Transaction
-    open suspend fun cacheStatistics(items: List<Statistics>) {
-        deleteAll()
-        insertAll(items)
+    open suspend fun cacheGlobalStatistics(items: List<GlobalStatistics>) {
+        deleteAllGlobalStatistics()
+        insertAllGlobalStatistics(items)
+    }
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    abstract suspend fun insertAllLocalStatistics(items: List<LocalStatistics>)
+
+    @Query("select * from localStatistics")
+    abstract fun getAllLocalStatistics(): Flow<List<LocalStatistics>>
+
+    @Query("delete from localStatistics")
+    abstract fun deleteAllLocalStatistics()
+
+    @Transaction
+    open suspend fun cacheLocalStatistics(items: List<LocalStatistics>) {
+        deleteAllLocalStatistics()
+        insertAllLocalStatistics(items)
     }
 
 }
@@ -71,9 +87,10 @@ abstract class StatisticsDao {
     entities = [
         Country::class,
         News::class,
-        Statistics::class
+        GlobalStatistics::class,
+        LocalStatistics::class
     ],
-    version = 1
+    version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract val countriesDao: CountriesDao

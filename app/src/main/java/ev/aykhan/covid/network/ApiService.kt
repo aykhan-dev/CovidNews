@@ -5,8 +5,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import ev.aykhan.covid.BuildConfig
 import ev.aykhan.covid.model.pojo.CountryPOJO
+import ev.aykhan.covid.model.pojo.GlobalStatisticsPOJO
 import ev.aykhan.covid.model.pojo.NewsPOJO
-import ev.aykhan.covid.model.pojo.StatisticsPOJO
 import ev.aykhan.covid.utils.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,7 +32,7 @@ interface NewsService {
 interface StatisticsService {
 
     @GET("stats")
-    suspend fun getGlobalStatistics(): Response<StatisticsPOJO>
+    suspend fun getGlobalStatistics(): Response<GlobalStatisticsPOJO>
 
 }
 
@@ -72,8 +72,8 @@ object ApiInitHelper {
         return retrofit as Retrofit
     }
 
-    val countriesService by lazy { getClient().create(CountriesService::class.java) }
-    val newsService by lazy { getClient().create(NewsService::class.java) }
-    val statisticsService by lazy { getClient().create(StatisticsService::class.java) }
+    val countriesService: CountriesService by lazy { getClient().create(CountriesService::class.java) }
+    val newsService: NewsService by lazy { getClient().create(NewsService::class.java) }
+    val statisticsService: StatisticsService by lazy { getClient().create(StatisticsService::class.java) }
 
 }

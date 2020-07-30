@@ -3,7 +3,7 @@ package ev.aykhan.covid.model.pojo
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-data class StatisticsPOJO(
+data class GlobalStatisticsPOJO(
     @Json(name = "active_cases") val activeCases: String,
     @Json(name = "critical_cases") val criticalCases: String,
     @Json(name = "new_cases") val newCases: String,

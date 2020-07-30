@@ -10,19 +10,17 @@ class StatisticsRepository private constructor(database: AppDatabase) {
 
     companion object : SingletonHolder<StatisticsRepository, AppDatabase>(::StatisticsRepository)
 
-    private val tag = StatisticsRepository::class.java.name
-
     private val service = ApiInitHelper.statisticsService
     private val statisticsDao = database.statisticsDao
 
-    val statistics get() = statisticsDao.getAll()
+    val globalStatistics get() = statisticsDao.getAllGlobalStatistics()
 
-    suspend fun getStatistics() {
+    suspend fun getGlobalStatistics(titles: Array<String>) {
         try {
             val response = service.getGlobalStatistics()
             if (response.isSuccessful && response.code() == 200) {
-                val data = response.body()?.toStatisticsList() ?: listOf()
-                statisticsDao.cacheStatistics(data)
+                val data = response.body()?.toStatisticsList(titles) ?: listOf()
+                statisticsDao.cacheGlobalStatistics(data)
             }
         } catch (e: Exception) {
             Timber.e(e)

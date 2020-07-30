@@ -17,7 +17,7 @@ class StatisticsFragment : Fragment() {
     private lateinit var binding: FragmentStatisticsBinding
 
     private val viewModel: StatisticsViewModel by viewModels()
-    private val adapter = StatisticsAdapter(null)
+    private val adapter = GlobalStatisticsAdapter(null)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +40,7 @@ class StatisticsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.fetchStatistics()
+        viewModel.fetchGlobalStatistics()
     }
 
     private fun bindUI(): Unit = with(binding) {
@@ -53,7 +53,7 @@ class StatisticsFragment : Fragment() {
 
     private fun observeData(): Unit = with(viewModel) {
         lifecycleScope.launchWhenCreated {
-            listOfStatistics.collectLatest {
+            listOfGlobalStatistics.collectLatest {
                 binding.progressLoading.isVisible = it.isEmpty()
                 adapter.submitList(it)
             }
